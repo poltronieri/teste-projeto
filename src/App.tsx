@@ -8,7 +8,6 @@ function App() {
 
   const [count, setCount] = useState(0)
   const [result, setResult] = useState('Nada por enquanto')
-  const likes = 100;
   
   const fazSQL = async () => {
     const { rows } = await sql`SELECT * FROM films;`;
