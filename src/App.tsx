@@ -11,7 +11,7 @@ function App() {
   const likes = 100;
   
   const fazSQL = async () => {
-    const { rows } = await sql`SELECT * FROM posts WHERE likes > ${likes};`;
+    const { rows } = await sql`SELECT * FROM films;`;
     setResult(rows.toString())
 
   }
