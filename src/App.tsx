@@ -2,10 +2,19 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { sql } from "@vercel/postgres";
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [count, setCount] = useState(0)
+  const [result, setResult] = useState('Nada por enquanto')
+  const likes = 100;
+  
+  const fazSQL = async () => {
+    const { rows } = await sql`SELECT * FROM posts WHERE likes > ${likes};`;
+    setResult(rows.toString())
+
+  }
   return (
     <>
       <div>
@@ -21,6 +30,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={() => fazSQL()}>
+          Faz o SQLLLL
+        </button>
+        <p>{result}</p>
+
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
